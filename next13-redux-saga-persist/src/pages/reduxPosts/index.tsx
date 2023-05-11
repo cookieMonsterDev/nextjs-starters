@@ -13,7 +13,7 @@ const ReduxPosts = () => {
       <ul>
         {posts &&
           posts.map((e) => (
-            <Link href={`/posts/${e.id}`} key={e.id}>
+            <Link href={`/reduxPosts/${e.id}`} key={e.id}>
               <li>{e.title}</li>
             </Link>
           ))}
