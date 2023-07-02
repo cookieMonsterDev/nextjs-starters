@@ -1,14 +1,11 @@
-import { getServerSession } from "next-auth"
-import options from "../app/api/auth/[...nextauth]/options"
+'use client'
+import { signOut } from "next-auth/react";
 
-export default async function Home() {
-  const session = await getServerSession(options)
-
-  console.log(session)
-
+export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home
+      <h1>Home</h1>
+      <button onClick={() => signOut()}>Sign out</button>
     </main>
-  )
+  );
 }

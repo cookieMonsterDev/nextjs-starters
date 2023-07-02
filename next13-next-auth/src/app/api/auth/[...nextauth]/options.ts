@@ -18,15 +18,12 @@ const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        console.log(credentials);
-
         const user = { id: "42", email: "nextauth", password: "nextauth" };
 
         if (
           credentials?.email === user.email &&
           credentials?.password === user.password
         ) {
-          console.log(user)
           return user;
         } else {
           return null;
@@ -34,6 +31,9 @@ const options: NextAuthOptions = {
       },
     }),
   ],
+  pages: {
+    signIn: "/auth/login",
+  },
 };
 
 export default options;
