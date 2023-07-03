@@ -1,27 +1,19 @@
 "use client";
 import Link from "next/link";
-import { NavBarProps } from "./NavBar.types";
-import { useEffect, useState } from "react";
-import { getSession } from "next-auth/react";
+import { NavBarProps, Tab } from "./NavBar.types";
+import { useSession } from "next-auth/react";
 import { signOut, signIn } from "next-auth/react";
-import { Session } from "next-auth";
 
-export const NavBarComponent: React.FC<NavBarProps> = ({ tabsList }) => {
-  const [session, setSession] = useState<Session | null>(null);
+const defaultTabsList: Tab[] = [
+  { name: "Home", href: "/" },
+  { name: "Posts", href: "/posts" },
+  { name: "User", href: "/user" },
+];
 
-  useEffect(() => {
-    async function fetchSession() {
-      try {
-        const session = await getSession();
-        setSession(session);
-      } catch (e) {
-        setSession(null);
-      }
-    }
-
-    fetchSession();
-  }, []);
-
+export const NavBarComponent: React.FC<NavBarProps> = ({
+  tabsList = defaultTabsList,
+}) => {
+  const { data: session } = useSession();
 
   return (
     <nav className="p-4 flex space justify-between">

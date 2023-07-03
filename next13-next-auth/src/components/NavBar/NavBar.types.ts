@@ -1,5 +1,5 @@
 export interface NavBarProps {
-  tabsList: Tab[],
+  tabsList?: Tab[],
 }
 
 export type Tab = { name: string, href: string}

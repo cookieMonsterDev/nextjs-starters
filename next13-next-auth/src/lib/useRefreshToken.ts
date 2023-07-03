@@ -3,13 +3,13 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 
 const useRefreshToken = () => {
-  // const all = useSession();
+  const { data: session, status } = useSession()
   
-  // console.log(all)
+  console.log(session)
 
 
   useEffect(() => {
-    const interval = setInterval(() => {}, 100000);
+    const interval = setInterval(() => console.log('test'), 100000);
 
     return () => {
       clearInterval(interval);
