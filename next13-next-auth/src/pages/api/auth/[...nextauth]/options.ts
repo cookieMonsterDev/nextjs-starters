@@ -24,17 +24,29 @@ const options: NextAuthOptions = {
             ...credentials,
           });
 
-          console.log(data)
-
           return data;
         } catch (error) {
-          return null
+          return null;
         }
       },
     }),
   ],
   pages: {
     signIn: "/auth/login",
+  },
+  callbacks: {
+    async jwt({ user, token }) {
+      return { ...user, ...token };
+    },
+    async session({ session, token }) {
+      const user = token.user as any;
+      session.user = {
+        accessToken: token.accessToken,
+        refreshToken: token.refreshToken,
+        ...user,
+      } as any;
+      return session;
+    },
   },
 };
 

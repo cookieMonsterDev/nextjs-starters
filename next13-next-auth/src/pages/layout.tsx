@@ -1,5 +1,6 @@
 import { NavBar } from "@/components/NavBar";
 import "./globals.css";
+import useRefreshToken from "@/core/useRefreshToken";
 
 export const metadata = {
   title: "Next auth",
@@ -11,8 +12,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  // useRefreshToken()
+
   return (
-    <html lang="en">
+    <html>
       <body>
         <NavBar
           tabsList={[

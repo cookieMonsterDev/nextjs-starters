@@ -1,5 +1,3 @@
-import { Session } from "next-auth"
-
 export interface NavBarProps {
   tabsList: Tab[],
 }
