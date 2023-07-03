@@ -1,3 +1,4 @@
+import { Api } from "@/core/axios";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -18,15 +19,16 @@ const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        const user = { id: "42", email: "nextauth", password: "nextauth" };
+        try {
+          const { data } = await Api.post("/auth/login", {
+            ...credentials,
+          });
 
-        if (
-          credentials?.email === user.email &&
-          credentials?.password === user.password
-        ) {
-          return user;
-        } else {
-          return null;
+          console.log(data)
+
+          return data;
+        } catch (error) {
+          return null
         }
       },
     }),

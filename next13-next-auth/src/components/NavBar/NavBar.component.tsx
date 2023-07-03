@@ -20,8 +20,6 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ tabsList }) => {
     fetchSession();
   }, []);
 
-  console.log(session);
-
   return (
     <nav className="p-4">
       <ul className="flex text-2xl font-bold gap-6">
@@ -30,7 +28,6 @@ export const NavBarComponent: React.FC<NavBarProps> = ({ tabsList }) => {
             {e.name.toLocaleUpperCase()}
           </Link>
         ))}
-        {session && <Link href={'/user'}>USER</Link>}
       </ul>
     </nav>
   );

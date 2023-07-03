@@ -1,17 +1,37 @@
-'use client'
+"use client";
+import { ChangeEvent, useState } from "react";
 import { useFormik } from "formik";
 import { initialValues, validationSchema } from "./config";
 import Link from "next/link";
 import { Input } from "@/components/Input";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: () => {
-      return;
+    onSubmit: async (values) => {
+      const signInResponse = await signIn("credentials", {
+        ...values,
+        redirect: false,
+      });
+
+      if (signInResponse && !signInResponse.error) {
+        router.push("/");
+      } else {
+        setError("Email or Password is wrong!");
+      }
     },
   });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    formik.handleChange(e);
+    setError((e) => null);
+  };
 
   return (
     <div className="absolute inset-0 w-96 h-fit m-auto p-8 bg-white shadow-lg shadow-Zinc-500/50">
@@ -23,7 +43,9 @@ const Login = () => {
           name="email"
           id="email"
           value={formik.values.email}
-          onChange={formik.handleChange}
+          onChange={handleChange}
+          error={Boolean(error || formik.errors.email)}
+          errorText={error || formik.errors.email}
         />
         <Input
           label="Password"
@@ -32,7 +54,9 @@ const Login = () => {
           id="password"
           type="password"
           value={formik.values.password}
-          onChange={formik.handleChange}
+          onChange={handleChange}
+          error={Boolean(error || formik.errors.password)}
+          errorText={error || formik.errors.password}
         />
         <button
           type="submit"

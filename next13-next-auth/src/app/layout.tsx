@@ -18,6 +18,7 @@ export default function RootLayout({
           tabsList={[
             { name: "Home", href: "/" },
             { name: "Posts", href: "/posts" },
+            { name: "User", href: "/user" },
           ]}
         />
         {children}
