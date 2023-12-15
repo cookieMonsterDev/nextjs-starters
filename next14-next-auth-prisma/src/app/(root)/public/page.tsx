@@ -11,9 +11,11 @@ const Public = async () => {
       {JSON.stringify(user)}
       <h1>TEST Page loading</h1>
       <Suspense fallback={<div>loading 5 sec...</div>}>
+        {/* @ts-expect-error Server Component */}
         <CompOne />
       </Suspense>
       <Suspense fallback={<div>loading 10 sec...</div>}>
+        {/* @ts-expect-error Server Component */}
         <CompTwo />
       </Suspense>
     </div>
