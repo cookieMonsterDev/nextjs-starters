@@ -4,7 +4,6 @@ import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import prisma from "@/lib/prisma";
-import { Session } from "inspector";
 import { UserRole } from "@prisma/client";
 
 export const authOptions: AuthOptions = {
