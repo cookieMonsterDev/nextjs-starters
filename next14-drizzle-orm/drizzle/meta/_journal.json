@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1713463464966,
+      "tag": "0000_left_shotgun",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1713464264438,
+      "tag": "0001_shocking_master_chief",
+      "breakpoints": true
+    }
+  ]
+}
